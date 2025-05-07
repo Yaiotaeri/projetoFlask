@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ site.titulo }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <header class="menu">
+        <div class="menuI">
+            <div class="logo">
+                <h1 id="tituloCorAdded" style="color: {{ site.tituloCor or '#000000' }}">{{ site.titulo }}</h1>
+            </div>
+            
+            {% if admin %}
+            <nav class="adminMenu">
+                <a href="/logout">Sair</a>
+            </nav>
+            {% else %}
+            <nav class="loginLinkMenu">
+                <a href="/login" class="loginLink">Área do administrador</a>
+            </nav>
+            {% endif %}
+        </div>
+    </header>
+
+    <div class="carrousel">
+        {% if site.imagem %}
+        <div class="siteImagem">
+            <img src="{{ site.imagem }}" alt="Imagem 1" class="img1">
+            <img src="{{ site.imagemTwo }}" alt="Imagem 2" class="img2">
+        </div>
+        {% endif %}
+        <img src="../static/img/arrowRight.png" alt="esquerda" class="arrowRight">
+        <img src="../static/img/arrowLeft.png" alt="direta" class="arrowLeft">
+    </div>    
+
+    <div class="descricaoSite">
+        <div class="descricaoSiteI">
+            <p>{{ site.descricao }}</p>
+        </div>
+    </div>
+
+    <section class="produtosArea">
+        <h2 style="text-align:center;">Produtos</h2>
+        <div class="produtosContainer">
+            {% for produto in site.produtos %}
+            <div class="produtoItem">
+                <img src="{{ produto.imagem }}" alt="{{ produto.nome }}">
+                <h3 style="color: {{ produto.corNome }}">{{ produto.nome }}</h3>
+                <p style="color: {{ produto.corPreco }}">{{ produto.preco }}</p>
+                <button class="botaoAdquirir">Adquirir</button>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    
+    {% if admin %}
+    <section class="formEditar">
+        <h2>Editar conteúdo do site:</h2>
+        <form method="post" action="/salvar">
+            <div class="tituloContainer">
+                <input type="text" name="titulo" id="titulo" value="{{ site.titulo }}" required>
+                <input type="color" name="tituloCor" id="tituloCor" value="{{ site.tituloCor or '#000000' }}">
+            </div>
+
+            <label for="descricao">Descrição:</label>
+            <textarea name="descricao" id="descricao" required>{{ site.descricao }}</textarea>
+
+            <label for="imagem">Link da imagem:</label>
+            <input type="text" name="imagem" id="imagem" value="{{ site.imagem }}">
+
+            <label for="imagemTwo">Link da imagem:</label>
+            <input type="text" name="imagemTwo" id="imagemTwo" value="{{ site.imagemTwo }}">
+
+            <h3>Editar Produtos:</h3>
+            {% for i in range(3) %}
+            <fieldset>
+                <legend>Produto {{ i+1 }}</legend>
+                <input name="produtos[{{i}}][nome]" placeholder="Nome" value="{{ site.produtos[i].nome if site.produtos|length > i else '' }}">
+                <input name="produtos[{{i}}][imagem]" placeholder="Link da imagem" value="{{ site.produtos[i].imagem if site.produtos|length > i else '' }}">
+                <input name="produtos[{{i}}][preco]" placeholder="Preço" value="{{ site.produtos[i].preco if site.produtos|length > i else '' }}">
+                <label>Cor do nome:</label>
+                <input type="color" name="produtos[{{i}}][corNome]" value="{{ site.produtos[i].corNome if site.produtos|length > i else '#000000' }}">
+                <label>Cor do preço:</label>
+                <input type="color" name="produtos[{{i}}][corPreco]" value="{{ site.produtos[i].corPreco if site.produtos|length > i else '#000000' }}">
+            </fieldset>
+            {% endfor %}
+            <button type="submit">Salvar</button>
+        </form>
+    </section>
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>
