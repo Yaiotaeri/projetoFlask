@@ -228,6 +228,7 @@ body {
 .produtosArea {
     padding: 2rem;
     background-color: #f4f4f4;
+    margin-bottom: 5rem;
 }
 
 .produtosContainer {
@@ -239,7 +240,8 @@ body {
 }
 
 .produtoItem {
-    width: 220px;
+    width: 346px;
+    height: 356px;
     background: #f9f9f9;
     padding: 1rem;
     border-radius: 12px;
@@ -255,7 +257,7 @@ body {
 .produtoItem img {
     width: 100%;
     border-radius: 8px;
-    height: 150px;
+    height: 356px;
     object-fit: cover;
 }
 
@@ -285,4 +287,39 @@ body {
     padding: 0;
     cursor: pointer;
     margin: 0.5rem 0;
+}
+
+.rodape {
+    background-color: #4b2e1e; /* marrom escuro */
+    color: #fff;
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.rodape-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.rodape p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    text-shadow: 1px 1px 1px #00000033;
+}
+
+.botao-contato {
+    background-color: #c4a577; /* tom dourado suave */
+    color: #fff;
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.botao-contato:hover {
+    background-color: #a68458;
+    transform: scale(1.05);
 }

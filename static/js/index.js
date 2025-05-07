@@ -44,3 +44,9 @@ carrousel.addEventListener("mouseleave", () => {
     arrowRight.classList.remove("opacityTrans");
     arrowLeft.classList.remove("opacityTrans");
 });
+
+const botaoAdquirir = document.querySelector(".botaoAdquirir");
+
+botaoAdquirir.addEventListener("click",()=>{
+    window.open("https://wa.me/5535988874386?text=Olá%2C+tenho+interesse+no+seu+café+arábica! ");
+});

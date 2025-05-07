@@ -42,19 +42,26 @@
     </div>
 
     <section class="produtosArea">
-        <h2 style="text-align:center;">Produtos</h2>
+        <h2 style="text-align:center; color:black;">Café Arábica</h2>
         <div class="produtosContainer">
             {% for produto in site.produtos %}
             <div class="produtoItem">
                 <img src="{{ produto.imagem }}" alt="{{ produto.nome }}">
-                <h3 style="color: {{ produto.corNome }}">{{ produto.nome }}</h3>
-                <p style="color: {{ produto.corPreco }}">{{ produto.preco }}</p>
+                <h3 style="color: {{ produto.corNome }}">R$: {{ produto.nome }}</h3>
+                <p style="color: {{ produto.corPreco }}">R$: {{ produto.preco }}</p>
                 <button class="botaoAdquirir">Adquirir</button>
             </div>
             {% endfor %}
         </div>
     </section>
     
+    <footer class="rodape">
+        <div class="rodape-container">
+          <p>&copy; 2025 Monte Alegre Coffees. Todos os direitos reservados.</p>
+          <a href="#contato" class="botao-contato">Contato</a>
+        </div>
+      </footer>
+      
     {% if admin %}
     <section class="formEditar">
         <h2>Editar conteúdo do site:</h2>
